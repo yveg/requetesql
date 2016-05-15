@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package jpql.entity;
+package streaming.entity;
 
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -12,8 +12,10 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
 /**
@@ -29,6 +31,10 @@ public class Serie implements Serializable {
     
     private String titre;
     private String synopsis;
+    
+    @ManyToOne
+    @JoinColumn(name = "GENRE_ID")
+    private Genre genre;
     
     @OneToMany(mappedBy = "serie")
     private List<Saison> saisons = new ArrayList<>();
@@ -121,7 +127,7 @@ public class Serie implements Serializable {
 
     @Override
     public String toString() {
-        return "streaming.entity.Serie[ id=" + id + " ]";
+        return "jpql.entity.Serie[ id=" + id + " ]";
     }
     
 }

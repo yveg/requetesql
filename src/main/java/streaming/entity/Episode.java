@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package jpql.entity;
+package streaming.entity;
 
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -12,26 +12,31 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.ManyToMany;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 
 /**
  *
  * @author ETY
  */
 @Entity
-public class Pays implements Serializable {
+public class Episode implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
     
-    private String nom;
+    private String titre;
+    private Integer numEpisode;
     
-    @ManyToMany(mappedBy = "pays")
-    private List<Film> filmsProduits = new ArrayList<>();
-    @ManyToMany(mappedBy = "pays")
-    private List<Serie> seriesProduits = new ArrayList<>();
-
+    @OneToMany(mappedBy = "episode")
+    private List<Lien> liens = new ArrayList<>();
+    
+    @ManyToOne
+    @JoinColumn(name = "saison_id")
+    private Saison saison;
+    
     public Long getId() {
         return id;
     }
@@ -40,28 +45,36 @@ public class Pays implements Serializable {
         this.id = id;
     }
 
-    public String getNom() {
-        return nom;
+    public String getTitre() {
+        return titre;
     }
 
-    public void setNom(String nom) {
-        this.nom = nom;
+    public void setTitre(String titre) {
+        this.titre = titre;
     }
 
-    public List<Film> getFilmsProduits() {
-        return filmsProduits;
+    public Integer getNumEpisode() {
+        return numEpisode;
     }
 
-    public void setFilmsProduits(List<Film> filmsProduits) {
-        this.filmsProduits = filmsProduits;
+    public void setNumEpisode(Integer numEpisode) {
+        this.numEpisode = numEpisode;
     }
 
-    public List<Serie> getSeriesProduits() {
-        return seriesProduits;
+    public List<Lien> getLiens() {
+        return liens;
     }
 
-    public void setSeriesProduits(List<Serie> seriesProduits) {
-        this.seriesProduits = seriesProduits;
+    public void setLiens(List<Lien> liens) {
+        this.liens = liens;
+    }
+
+    public Saison getSaison() {
+        return saison;
+    }
+
+    public void setSaison(Saison saison) {
+        this.saison = saison;
     }
 
     @Override
@@ -74,10 +87,10 @@ public class Pays implements Serializable {
     @Override
     public boolean equals(Object object) {
         // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof Pays)) {
+        if (!(object instanceof Episode)) {
             return false;
         }
-        Pays other = (Pays) object;
+        Episode other = (Episode) object;
         if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
             return false;
         }
@@ -86,7 +99,7 @@ public class Pays implements Serializable {
 
     @Override
     public String toString() {
-        return "streaming.entity.Pays[ id=" + id + " ]";
+        return "jpql.entity.Episode[ id=" + id + " ]";
     }
     
 }

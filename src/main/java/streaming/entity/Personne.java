@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package jpql.entity;
+package streaming.entity;
 
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -115,7 +115,7 @@ public class Personne implements Serializable {
 
     @Override
     public String toString() {
-        return "streaming.entity.Personne[ id=" + id + " ]";
+        return "jpql.entity.Personne[ id=" + id + " ]";
     }
     
 }

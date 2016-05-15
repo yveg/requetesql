@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package jpql.entity;
+package streaming.entity;
 
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -12,8 +12,10 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
 /**
@@ -26,6 +28,10 @@ public class Film implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
+    
+    @ManyToOne
+    @JoinColumn(name = "GENRE_ID")
+    private Genre genre;
     
     private String titre;
     private String synopsis;
@@ -150,7 +156,7 @@ public class Film implements Serializable {
 
     @Override
     public String toString() {
-        return "streaming.entity.Film[ id=" + id + " ]";
+        return "jpql.entity.Film[ id=" + id + " ]";
     }
     
 }

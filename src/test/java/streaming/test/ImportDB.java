@@ -3,41 +3,40 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package jpql.test;
+package streaming.test;
 
-import java.io.FileOutputStream;
-import java.io.IOException;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 import org.dbunit.DatabaseUnitException;
 import org.dbunit.database.DatabaseConnection;
 import org.dbunit.database.IDatabaseConnection;
-import org.dbunit.database.search.TablesDependencyHelper;
-import org.dbunit.dataset.IDataSet;
 import org.dbunit.dataset.xml.FlatXmlDataSet;
+import org.dbunit.dataset.xml.FlatXmlProducer;
+import org.dbunit.operation.DatabaseOperation;
 import org.junit.Test;
+import org.xml.sax.InputSource;
 
 /**
  *
  * @author tom
  */
-public class ExportDB {
-    
+public class ImportDB {
+
     @Test
-    public void test() throws ClassNotFoundException, SQLException, DatabaseUnitException, IOException{
-        
+    public void test() throws ClassNotFoundException, SQLException, DatabaseUnitException, FileNotFoundException {
+
         // Connexion DB
         Class driverClass = Class.forName("org.apache.derby.jdbc.ClientDriver");
         Connection jdbcConnection = DriverManager.getConnection(
                 "jdbc:derby://localhost:1527/sample", "app", "app");
         IDatabaseConnection connection = new DatabaseConnection(jdbcConnection);
         
-        // Récupération noms tables
-        String[] depTableNames = 
-          TablesDependencyHelper.getAllDependentTables( connection, "LIEN" );
-        IDataSet depDataset = connection.createDataSet( depTableNames );
-        FlatXmlDataSet.write(depDataset, new FileOutputStream("donnees.xml")); 
+        // Import
+        FlatXmlDataSet dataSet = new FlatXmlDataSet(new FlatXmlProducer(new InputSource(new FileInputStream("donnees.xml"))));
+        DatabaseOperation.CLEAN_INSERT.execute(connection, dataSet);
     }
-    
+
 }
