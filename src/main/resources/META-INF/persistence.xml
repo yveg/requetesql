@@ -2,14 +2,14 @@
 <persistence version="2.1" xmlns="http://xmlns.jcp.org/xml/ns/persistence" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/persistence http://xmlns.jcp.org/xml/ns/persistence/persistence_2_1.xsd">
   <persistence-unit name="PU" transaction-type="RESOURCE_LOCAL">
     <provider>org.eclipse.persistence.jpa.PersistenceProvider</provider>
-    <class>streaming.entity.Episode</class>
-    <class>streaming.entity.Film</class>
-    <class>streaming.entity.Personne</class>
-    <class>streaming.entity.Serie</class>
-    <class>streaming.entity.Lien</class>
-    <class>streaming.entity.Pays</class>
-    <class>streaming.entity.Saison</class>
-    <class>streaming.entity.Genre</class>
+    <class>jpql.streaming.Episode</class>
+    <class>jpql.streaming.Film</class>
+    <class>jpql.streaming.Genre</class>
+    <class>jpql.streaming.Lien</class>
+    <class>jpql.streaming.Pays</class>
+    <class>jpql.streaming.Personne</class>
+    <class>jpql.streaming.Saison</class>
+    <class>jpql.streaming.Serie</class>
     <properties>
       <property name="javax.persistence.jdbc.url" value="jdbc:derby://localhost:1527/sample"/>
       <property name="javax.persistence.jdbc.user" value="app"/>
