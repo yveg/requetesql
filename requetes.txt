@@ -14,7 +14,7 @@ Nombre de films à la fois interprétés et réalisés par polanski
 
 Le titre du film d'horreur anglais réalisé par roman polanski
 
-Le nomnbre de films réalisés par joel coel
+Le nomnbre de films réalisés par joel coen
 
 Le nombre de films réalisés par les 2 frères coen
 
@@ -31,3 +31,9 @@ Le nombre total d'épisodes de la série Dexter
 Le nombre total de liens pour nos films policiers américains
 
 Le nombre totals de liens pour nos films d'horreur interprétés par Polanski
+
+Tous les films d'horreur, sauf ceux interprétés par Polanski ( utiliser UNION ou MINUS ou INTERSECT )
+
+Parmi tous les films, uniquement ceux interprétés par Polanski  ( utiliser UNION ou MINUS ou INTERSECT )
+
+Tous les films interprétés par Polanski et aussi tous les films d'horreur ( utiliser UNION ou MINUS ou INTERSECT )
